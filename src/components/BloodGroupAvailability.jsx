@@ -1,5 +1,5 @@
 "use client";
-import { useBFC } from "@/app/Context/BloodFighter";
+import { useBFC } from "@/Context/BloodFighter";
 import React from "react";
 
 export default function BloodGroupAvailability() {

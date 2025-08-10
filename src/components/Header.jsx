@@ -1,7 +1,8 @@
 "use client"
+import { useBFC } from "@/Context/BloodFighter";
 import Image from "next/image";
 import Link from "next/link";
-import { useBFC } from "../Context/BloodFighter";
+
 
 export default function Header() {
   const { active, setActive } = useBFC();

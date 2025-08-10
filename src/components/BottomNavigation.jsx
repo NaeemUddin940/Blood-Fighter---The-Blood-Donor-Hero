@@ -1,6 +1,7 @@
 "use client";
+import { useBFC } from "@/Context/BloodFighter";
 import Link from "next/link";
-import { useBFC } from "../Context/BloodFighter";
+
 
 export default function BottomNavigation() {
  const {active, setActive} = useBFC()
