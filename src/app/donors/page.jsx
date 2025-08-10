@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { useBFC } from "../Context/BloodFighter";
-import DonarStats from "../Components/DonorStates";
+import DonarStats from "@/components/DonorStates";
+import { useBFC } from "@/Context/BloodFighter";
 
 export default function Donors() {
   const { bloodGroupList } = useBFC();

@@ -1,5 +1,6 @@
+"use client";
+import { useBFC } from "@/Context/BloodFighter";
 import React from "react";
-import { useBFC } from "../Context/BloodFighter";
 
 // The main component for the Statistics page.
 export default function StatisticsPage() {
@@ -11,6 +12,7 @@ export default function StatisticsPage() {
     totalDonations: 301,
     availability: 63,
   };
+if (!bloodGroupList?.length) return null; // or a skeleton loader
 
   // Dummy data for blood group statistics.
   const bloodGroupStats = [
@@ -82,15 +84,15 @@ export default function StatisticsPage() {
           <h2 className="text-lg font-bold text-gray-800 mb-4">
             Blood Group Statistics
           </h2>
-          {bloodGroupStats.map((bg, index) => (
-            <div key={index} className="mb-4">
+          {bloodGroupStats.map((bg) => (
+            <div key={bg.group} className="mb-4">
               <div className="flex justify-between items-center mb-1">
                 <div className="flex items-center gap-5">
                   {bloodGroupList
                     .filter((group) => group.group === bg.group)
                     .map((group) => (
                       <div
-                        key={group}
+                        key={group.group}
                         className={`w-12 h-12 rounded-full ${group.color} text-black flex items-center justify-center font-bold text-lg mb-2`}>
                         {bg.group}
                       </div>
@@ -124,8 +126,8 @@ export default function StatisticsPage() {
           <h2 className="text-lg font-bold text-gray-800 mb-4">
             Monthly Donations (2024)
           </h2>
-          {monthlyDonations.map((monthData, index) => (
-            <div key={index} className="flex items-center mb-4">
+          {monthlyDonations.map((monthData) => (
+            <div key={monthData.month} className="flex items-center mb-4">
               <span className="w-12 text-sm text-gray-500 font-semibold">
                 {monthData.month}
               </span>
