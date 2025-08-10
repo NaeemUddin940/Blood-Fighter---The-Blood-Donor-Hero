@@ -1,0 +1,140 @@
+"use client";
+import React, { useState } from "react";
+
+// The main component for the Register Donor page.
+const Register = () => {
+  const [activeBloodGroup, setActiveBloodGroup] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState("")
+
+  const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+
+  return (
+    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+      {/* Main content area */}
+      <main className="w-full max-w-2xl p-4 lg:p-8 lg:mt-0 pb-20 lg:pb-8">
+        <div className="flex flex-col items-center mb-6">
+          <div className="w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center text-4xl mb-2 shadow-lg">
+            <i className="fas fa-user-plus"></i>
+          </div>
+          <h1 className="text-2xl font-bold text-gray-800">Register Donor</h1>
+          <p className="text-gray-500 mt-1 text-center">
+            Add a new blood donor to the system
+          </p>
+        </div>
+
+        <form className="bg-white rounded-2xl p-6 shadow-lg mb-6">
+          {/* Full Name */}
+          <div className="mb-4">
+            <label
+              htmlFor="fullName"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Full Name <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="fullName"
+              name="fullName"
+              placeholder="Enter full name"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            />
+          </div>
+          {/* Age */}
+          <div className="mb-4">
+            <label
+              htmlFor="age"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Age <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              placeholder="Enter age"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            />
+          </div>
+          {/* Village/City */}
+          <div className="mb-4">
+            <label
+              htmlFor="villageCity"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Village/City <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="villageCity"
+              name="villageCity"
+              placeholder="Enter village or city"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            />
+          </div>
+          {/* Phone Number */}
+          <div className="mb-4">
+            <label
+              htmlFor="phoneNumber"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              Phone Number <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              placeholder="Enter phone number"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            />
+          </div>
+          {/* Blood Group */}
+          <div className="mb-4">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              Blood Group <span className="text-red-500">*</span>
+            </label>
+            <div className="grid grid-cols-4 gap-2">
+              {bloodGroups.map((group) => (
+                <button
+                  key={group}
+                  type="button"
+                  onClick={() => setActiveBloodGroup(group)}
+                  className={`px-4 ${
+                    activeBloodGroup === group
+                      ? "bg-red-500"
+                      : "bg-gray-100 text-gray-700 hover:bg-red-100 hover:text-red-600"
+                  } py-3 cursor-pointer rounded-lg font-semibold text-lg   transition-colors duration-200 `}>
+                  {group}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full cursor-pointer bg-red-600 text-white font-semibold py-4 rounded-full shadow-lg hover:bg-red-700 transition-colors duration-200">
+            Register As a Donor
+          </button>
+          {/* Submission status message */}
+
+          <p className="mt-4 text-center font-semibold text-green-600">Here will be Submission Text</p>
+        </form>
+
+        {/* Donation Guidelines Section */}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+          <div className="flex items-start space-x-3">
+            <div className="w-5 h-5 flex items-center justify-center text-blue-600 mt-0.5">
+              <i className="ri-information-line"></i>
+            </div>
+            <div>
+              <h3 className="font-medium text-blue-900">Donation Guidelines</h3>
+              <ul className="text-sm text-blue-800 mt-1 space-y-1">
+                <li>• Donors must be 18-65 years old</li>
+                <li>• Wait 56 days between donations</li>
+                <li>• Must weigh at least 50kg</li>
+                <li>• Be in good health</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Register;
