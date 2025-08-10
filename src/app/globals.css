@@ -24,3 +24,20 @@ body {
   color: var(--foreground); */
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.bottom-Nav{
+  @apply flex flex-col hover:text-red-400 items-center ;
+}
+
+.shadow{
+  @apply shadow-[6px_6px_12px_#c5c5c5,-6px_-6px_12px_#ffffff] cursor-pointer ;
+}
+
+.scaled{
+  @apply group-hover:scale-110 transition-transform duration-200
+}
+
+
+
+/* dark:shadow-[10px_10px_20px_#313c4a,-10px_-10px_20px_#1e252e] */

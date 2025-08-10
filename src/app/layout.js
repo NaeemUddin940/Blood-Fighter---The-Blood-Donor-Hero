@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { BloodFighterContextProvider } from "@/Context/BloodFighter";
+import Header from "@/components/Header";
+import BottomNavigation from "@/components/BottomNavigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +37,11 @@ export default function RootLayout({ children }) {
 
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+        <BloodFighterContextProvider>
+          <Header />
+          {children}
+          <BottomNavigation />
+        </BloodFighterContextProvider>
       </body>
     </html>
   );
