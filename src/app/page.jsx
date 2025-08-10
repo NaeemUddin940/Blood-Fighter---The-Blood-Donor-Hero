@@ -1,9 +1,18 @@
-import Image from "next/image";
+import AllDonerAndStatistics from "@/components/AllDonorAndStatistics";
+import BloodGroupAvailability from "@/components/BloodGroupAvailability";
+import DonarStats from "@/components/DonorStates";
+import SaveLifeTodayCard from "@/components/SaveLifeToday";
 
 export default function Home() {
   return (
-   <div>
-    <h1>Hello World</h1>
-   </div>
+    <div className="px-5">
+      <SaveLifeTodayCard />
+
+      <DonarStats />
+
+      <BloodGroupAvailability />
+
+      <AllDonerAndStatistics />
+    </div>
   );
 }
