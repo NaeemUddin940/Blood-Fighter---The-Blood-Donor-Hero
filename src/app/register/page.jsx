@@ -1,12 +1,32 @@
 "use client";
+import { Timestamp } from "firebase/firestore";
 import React, { useState } from "react";
 
 // The main component for the Register Donor page.
 const Register = () => {
-  const [activeBloodGroup, setActiveBloodGroup] = useState("");
-  const [submissionStatus, setSubmissionStatus] = useState("")
-
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
+  const [activeBloodGroup, setActiveBloodGroup] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState("");
+
+  const [formData, setFormData] = useState({
+    name: "",
+    age: "",
+    village: "",
+    phoneNumber: "",
+    bloodGroup: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    console.log(name, value);
+    setFormData({ ...formData, [name]: value });
+  };
+
+
+  console.log(formData);
+  const submitTheForm = (e) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -26,14 +46,16 @@ const Register = () => {
           {/* Full Name */}
           <div className="mb-4">
             <label
-              htmlFor="fullName"
+              htmlFor="name"
               className="block text-sm font-semibold text-gray-700 mb-1">
               Full Name <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="fullName"
-              name="fullName"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
               placeholder="Enter full name"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
@@ -49,6 +71,8 @@ const Register = () => {
               type="number"
               id="age"
               name="age"
+              value={formData.age}
+              onChange={handleInputChange}
               placeholder="Enter age"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
@@ -56,14 +80,15 @@ const Register = () => {
           {/* Village/City */}
           <div className="mb-4">
             <label
-              htmlFor="villageCity"
+              htmlFor="village"
               className="block text-sm font-semibold text-gray-700 mb-1">
               Village/City <span className="text-red-500">*</span>
             </label>
             <input
               type="text"
-              id="villageCity"
-              name="villageCity"
+              id="village"
+              name="village"
+              onChange={handleInputChange}
               placeholder="Enter village or city"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
@@ -79,10 +104,32 @@ const Register = () => {
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
+              onChange={handleInputChange}
               placeholder="Enter phone number"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
           </div>
+          {/* Last Donation Date */}
+          {/* <div className="mb-6">
+            <label
+              htmlFor="CurrDonationDate"
+              className="block text-sm font-semibold text-gray-700 mb-1">
+              First Donation Date (If not donate then leave it.)
+            </label>
+            <div className="relative">
+              <input
+                type="date"
+                id="CurrDonationDate"
+                name="CurrDonationDate"
+                onChange={handleInputChange}
+                placeholder="mm/dd/yyyy"
+                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              />
+            </div>
+            <p className="text-sm text-gray-500 mt-1">
+              Leave empty if not donate.
+            </p>
+          </div> */}
           {/* Blood Group */}
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -107,12 +154,15 @@ const Register = () => {
 
           <button
             type="submit"
+            onClick={submitTheForm}
             className="w-full cursor-pointer bg-red-600 text-white font-semibold py-4 rounded-full shadow-lg hover:bg-red-700 transition-colors duration-200">
             Register As a Donor
           </button>
           {/* Submission status message */}
 
-          <p className="mt-4 text-center font-semibold text-green-600">Here will be Submission Text</p>
+          <p className="mt-4 text-center font-semibold text-green-600">
+            Here will be Submission Text
+          </p>
         </form>
 
         {/* Donation Guidelines Section */}
