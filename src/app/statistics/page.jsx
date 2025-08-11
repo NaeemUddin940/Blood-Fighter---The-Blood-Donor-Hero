@@ -4,7 +4,7 @@ import React from "react";
 
 // The main component for the Statistics page.
 export default function StatisticsPage() {
-  const { bloodGroupList } = useBFC();
+  const { bloodGroupList, user } = useBFC();
   // Dummy data for the statistics cards.
   const stats = {
     totalDonors: 123,
@@ -35,6 +35,7 @@ export default function StatisticsPage() {
     { month: "May", donations: 49 },
     { month: "Jun", donations: 56 },
   ];
+  
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -52,7 +53,7 @@ export default function StatisticsPage() {
           <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col items-center text-center">
             <i className="fas fa-user-friends text-5xl text-blue-500 mb-2"></i>
             <span className="text-3xl font-bold text-gray-800">
-              {stats.totalDonors}
+              {user.length}
             </span>
             <p className="text-sm text-gray-500">Total Donors</p>
           </div>
