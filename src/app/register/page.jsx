@@ -18,14 +18,13 @@ const Register = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
     setFormData({ ...formData, [name]: value });
   };
 
-
-  console.log(formData);
   const submitTheForm = (e) => {
     e.preventDefault();
+    console.log(formData);
+
   };
 
   return (
@@ -42,7 +41,9 @@ const Register = () => {
           </p>
         </div>
 
-        <form className="bg-white rounded-2xl p-6 shadow-lg mb-6">
+        <form
+          onSubmit={submitTheForm}
+          className="bg-white rounded-2xl p-6 shadow-lg mb-6">
           {/* Full Name */}
           <div className="mb-4">
             <label
@@ -60,6 +61,7 @@ const Register = () => {
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
           </div>
+
           {/* Age */}
           <div className="mb-4">
             <label
@@ -77,6 +79,7 @@ const Register = () => {
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
           </div>
+
           {/* Village/City */}
           <div className="mb-4">
             <label
@@ -93,6 +96,7 @@ const Register = () => {
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
           </div>
+
           {/* Phone Number */}
           <div className="mb-4">
             <label
@@ -130,6 +134,7 @@ const Register = () => {
               Leave empty if not donate.
             </p>
           </div> */}
+
           {/* Blood Group */}
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -140,7 +145,12 @@ const Register = () => {
                 <button
                   key={group}
                   type="button"
-                  onClick={() => setActiveBloodGroup(group)}
+                  name="bloodGroup"
+                  value={group}
+                  onClick={(e) => {
+                    setActiveBloodGroup(group);
+                    handleInputChange(e);
+                  }}
                   className={`px-4 ${
                     activeBloodGroup === group
                       ? "bg-red-500"
