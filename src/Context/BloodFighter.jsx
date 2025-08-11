@@ -22,7 +22,7 @@ export function BloodFighterContextProvider({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const collectionRefference = collection(db, "BloodDonor");
+      const collectionRefference = collection(db, "user");
 
       const snapshot = await getDocs(collectionRefference);
      const data = snapshot.docs.map(doc => ({

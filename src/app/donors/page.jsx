@@ -153,9 +153,9 @@ export default function Donors() {
                   <>
                     <span
                       className={`${
-                        person.isEligible ? "text-green-600" : "text-red-600"
+                        !person.isEligible ? "text-green-600" : "text-red-600"
                       }`}>
-                      {person.isEligible ? "Eligible" : "Not Eligible"}
+                      {!person.isEligible ? "Eligible" : "Not-Eligible"}
                     </span>
                     <span className="px-5 text0xl font-bold text-gray-700">
                       {person.phoneNumber}
@@ -177,7 +177,7 @@ export default function Donors() {
 
                 <div className="text-sm text-gray-500">
                   <span className="font-semibold text-gray-800">
-                    {person.donations}
+                    {!person.donations? "0": person.donations}
                   </span>{" "}
                   Donations
                 </div>

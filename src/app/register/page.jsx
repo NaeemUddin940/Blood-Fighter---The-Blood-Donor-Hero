@@ -1,5 +1,5 @@
 "use client";
-import { Timestamp } from "firebase/firestore";
+
 import React, { useState } from "react";
 
 // The main component for the Register Donor page.
@@ -21,12 +21,13 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  const handleBloodGroupChange = (group) => {
+    setFormData({ ...formData, bloodGroup: group });
+  };
 
-  
   const submitTheForm = (e) => {
     e.preventDefault();
-
-
+    console.log(formData);
     const requireFields = [
       "name",
       "age",
@@ -34,18 +35,25 @@ const Register = () => {
       "phoneNumber",
       "bloodGroup",
     ];
+    setActiveBloodGroup("");
 
     for (const field of requireFields) {
       if (!formData[field]) {
         setSubmissionStatus("Please fill in all required fields.");
         return;
       }
-
-      setSubmissionStatus("Your Registration Successfull as a Blood Donor.");
-      setTimeout(() => {
-        setSubmissionStatus("");
-      }, 2000);
     }
+    setSubmissionStatus("Your Registration Successfull as a Blood Donor.");
+    setTimeout(() => {
+      setSubmissionStatus("");
+    }, 2000);
+
+    setFormData({
+      name: "",
+      age: "",
+      village: "",
+      phoneNumber: "",
+    });
   };
 
   return (
@@ -112,6 +120,7 @@ const Register = () => {
               type="text"
               id="village"
               name="village"
+              value={formData.village}
               onChange={handleInputChange}
               placeholder="Enter village or city"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
@@ -129,6 +138,7 @@ const Register = () => {
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
+              value={formData.phoneNumber}
               onChange={handleInputChange}
               placeholder="Enter phone number"
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
@@ -167,10 +177,10 @@ const Register = () => {
                   key={group}
                   type="button"
                   name="bloodGroup"
-                  value={group}
-                  onClick={(e) => {
+                  value={formData.bloodGroup}
+                  onClick={() => {
                     setActiveBloodGroup(group);
-                    handleInputChange(e);
+                    handleBloodGroupChange(group);
                   }}
                   className={`px-4 ${
                     activeBloodGroup === group
