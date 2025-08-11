@@ -23,8 +23,23 @@ const Register = () => {
 
   const submitTheForm = (e) => {
     e.preventDefault();
-    console.log(formData);
 
+    const requireFields = [
+      "name",
+      "age",
+      "village",
+      "phoneNumber",
+      "bloodGroup",
+    ];
+
+    for (const field of requireFields) {
+      if (!formData[field]) {
+        setSubmissionStatus("Please fill in all required fields.");
+        return;
+      }
+
+      setSubmissionStatus("Your Registration Successfull as a Blood Donor.")
+    }
   };
 
   return (
@@ -170,8 +185,8 @@ const Register = () => {
           </button>
           {/* Submission status message */}
 
-          <p className="mt-4 text-center font-semibold text-green-600">
-            Here will be Submission Text
+          <p className={`mt-4 ${submissionStatus.includes("Successfull") ? "text-green-600" : "text-red-600"} text-center font-semibold `}>
+            {submissionStatus}
           </p>
         </form>
 
