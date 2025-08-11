@@ -19,27 +19,38 @@ export function BloodFighterContextProvider({ children }) {
   ];
 
   const [user, setUser] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState(user);
 
   useEffect(() => {
     const fetchData = async () => {
       const collectionRefference = collection(db, "user");
 
       const snapshot = await getDocs(collectionRefference);
-     const data = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-     }))
+      const data = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
       setUser(data);
-    }
+    };
 
     fetchData();
   }, []);
+
+      const [activeFilter, setActiveFilter] = useState("All");
+
+  function handleFilter(group) {
+    setFilteredUsers(user.filter((u) => group === u.bloodGroup));
+  }
 
   const state = {
     bloodGroupList,
     active,
     setActive,
     user,
+    handleFilter,
+    filteredUsers,
+    activeFilter,
+    setActiveFilter
   };
   return (
     <BloodFighterContext.Provider value={state}>

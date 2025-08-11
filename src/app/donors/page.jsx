@@ -4,12 +4,11 @@ import DonarStats from "@/components/DonorStates";
 import { useBFC } from "@/Context/BloodFighter";
 
 export default function Donors() {
-  const { bloodGroupList, user } = useBFC();
+  const { bloodGroupList, user, handleFilter, filteredUsers, activeFilter, setActiveFilter} = useBFC();
 
   // Blood groups to display for the filter buttons.
   const bloodGroups = ["All", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
-  const [active, setActive] = useState("All");
-  const [users, setUsers] = useState(user);
+
 
   return (
     <div className="min-h-screen flex flex-col items-center">
@@ -18,11 +17,11 @@ export default function Donors() {
           <button
             key={group}
             onClick={() => {
-              setActive(group);
-              setUsers(user.filter((u) => group === u.bloodGroup));
+              setActiveFilter(group);
+              handleFilter(group);
             }}
             className={`px-3 py-2 ${
-              active === group ? "bg-red-400" : "bg-gray-300"
+              activeFilter === group ? "bg-red-400" : "bg-gray-300"
             } cursor-pointer rounded-full text-sm transition-colors duration-200 text-black font-bold shadow`}>
             {group}
           </button>
@@ -33,7 +32,7 @@ export default function Donors() {
       <main className="w-full max-w-7xl px-4 pb-20">
         <DonarStats />
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3  gap-4">
-          {(active === "All" ? user : users).map((person) => (
+          {(activeFilter === "All" ? user : filteredUsers).map((person) => (
             <div
               key={person.id}
               className="bg-green-100 border border-green-300 rounded-2xl p-6 shadow-lg relative flex justify-between items-start">
