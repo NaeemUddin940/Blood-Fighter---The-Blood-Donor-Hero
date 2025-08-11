@@ -1,10 +1,12 @@
 "use client";
 import { useBFC } from "@/Context/BloodFighter";
 import Link from "next/link";
-
+import { useState } from "react";
 
 export default function BottomNavigation() {
- const {active, setActive} = useBFC()
+  const { active, setActive } = useBFC();
+  const [openProfile, setopenProfile] = useState("hidden");
+
   return (
     <nav
       id="mobile-nav"
@@ -27,6 +29,17 @@ export default function BottomNavigation() {
         <i className="fas fa-users text-lg"></i>
         <span className="text-xs mt-1">Donors</span>
       </Link>
+      <div
+        className={`bottom-Nav cursor-pointer ${
+          active === "Profile" ? "text-red-500" : "text-black"
+        }`}
+        onClick={() => {
+          setActive("Profile");
+          setopenProfile("block");
+        }}>
+        <i className="fas fa-user text-lg"></i>
+        <span className="text-xs mt-1">Profile</span>
+      </div>
       <Link
         href="/register"
         className={`bottom-Nav ${

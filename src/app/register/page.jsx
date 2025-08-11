@@ -9,7 +9,7 @@ const Register = () => {
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center">
       {/* Main content area */}
       <main className="w-full max-w-2xl p-4 lg:p-8 lg:mt-0 pb-20 lg:pb-8">
         <div className="flex flex-col items-center mb-6">

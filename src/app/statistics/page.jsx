@@ -12,7 +12,7 @@ export default function StatisticsPage() {
     totalDonations: 301,
     availability: 63,
   };
-if (!bloodGroupList?.length) return null; // or a skeleton loader
+  if (!bloodGroupList?.length) return null; // or a skeleton loader
 
   // Dummy data for blood group statistics.
   const bloodGroupStats = [
@@ -37,7 +37,7 @@ if (!bloodGroupList?.length) return null; // or a skeleton loader
   ];
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col items-center">
+    <div className="min-h-screen flex flex-col items-center">
       {/* Main content area */}
       <main className="w-full max-w-2xl p-4 lg:p-8 lg:mt-0 pb-20">
         <div className="flex flex-col items-center mb-6">

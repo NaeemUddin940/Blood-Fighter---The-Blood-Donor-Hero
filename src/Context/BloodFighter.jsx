@@ -1,5 +1,7 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { db } from "@/Firebase/Firebase";
+import { collection, getDocs } from "firebase/firestore";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const BloodFighterContext = createContext();
 
@@ -15,7 +17,30 @@ export function BloodFighterContextProvider({ children }) {
     { group: "O+", color: "bg-blue-300", donors: 28 },
     { group: "O-", color: "bg-blue-200", donors: 14 },
   ];
-  const state = { bloodGroupList, active, setActive };
+
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const collectionRefference = collection(db, "BloodDonor");
+
+      const snapshot = await getDocs(collectionRefference);
+     const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+     }))
+      setUser(data);
+    }
+
+    fetchData();
+  }, []);
+
+  const state = {
+    bloodGroupList,
+    active,
+    setActive,
+    user,
+  };
   return (
     <BloodFighterContext.Provider value={state}>
       {children}
