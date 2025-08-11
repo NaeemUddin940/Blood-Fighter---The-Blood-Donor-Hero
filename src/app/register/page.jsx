@@ -1,5 +1,7 @@
 "use client";
 
+import { db } from "@/Firebase/Firebase";
+import { addDoc, collection } from "firebase/firestore";
 import React, { useState } from "react";
 
 // The main component for the Register Donor page.
@@ -25,9 +27,21 @@ const Register = () => {
     setFormData({ ...formData, bloodGroup: group });
   };
 
-  const submitTheForm = (e) => {
+  const submitTheForm = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      await addDoc(collection(db, "user"), {
+        name: formData.name,
+        age: formData.age,
+        village: formData.village,
+        phoneNumber: formData.phoneNumber,
+        bloodGroup: formData.bloodGroup,
+      });
+    } catch (error) {
+      console.error("Error Adding Document: ", error);
+    }
+
     const requireFields = [
       "name",
       "age",
