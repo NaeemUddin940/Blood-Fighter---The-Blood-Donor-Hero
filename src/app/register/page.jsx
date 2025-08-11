@@ -21,8 +21,11 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
+  
   const submitTheForm = (e) => {
     e.preventDefault();
+
 
     const requireFields = [
       "name",
@@ -38,7 +41,10 @@ const Register = () => {
         return;
       }
 
-      setSubmissionStatus("Your Registration Successfull as a Blood Donor.")
+      setSubmissionStatus("Your Registration Successfull as a Blood Donor.");
+      setTimeout(() => {
+        setSubmissionStatus("");
+      }, 2000);
     }
   };
 
@@ -185,7 +191,12 @@ const Register = () => {
           </button>
           {/* Submission status message */}
 
-          <p className={`mt-4 ${submissionStatus.includes("Successfull") ? "text-green-600" : "text-red-600"} text-center font-semibold `}>
+          <p
+            className={`mt-4 ${
+              submissionStatus.includes("Successfull")
+                ? "text-green-600"
+                : "text-red-600"
+            } text-center font-semibold `}>
             {submissionStatus}
           </p>
         </form>
