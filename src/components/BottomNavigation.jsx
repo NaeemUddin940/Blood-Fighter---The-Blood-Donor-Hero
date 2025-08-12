@@ -29,7 +29,8 @@ export default function BottomNavigation() {
         <i className="fas fa-users text-lg"></i>
         <span className="text-xs mt-1">Donors</span>
       </Link>
-      <div
+      <Link
+        href="/profile"
         className={`bottom-Nav cursor-pointer ${
           active === "Profile" ? "text-red-500" : "text-black"
         }`}
@@ -39,7 +40,7 @@ export default function BottomNavigation() {
         }}>
         <i className="fas fa-user text-lg"></i>
         <span className="text-xs mt-1">Profile</span>
-      </div>
+      </Link>
       <Link
         href="/register"
         className={`bottom-Nav ${

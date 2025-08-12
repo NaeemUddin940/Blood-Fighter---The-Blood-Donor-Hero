@@ -159,7 +159,7 @@ const Register = () => {
             />
           </div>
           {/* Last Donation Date */}
-          {/* <div className="mb-6">
+          <div className="mb-6">
             <label
               htmlFor="CurrDonationDate"
               className="block text-sm font-semibold text-gray-700 mb-1">
@@ -178,7 +178,7 @@ const Register = () => {
             <p className="text-sm text-gray-500 mt-1">
               Leave empty if not donate.
             </p>
-          </div> */}
+          </div>
 
           {/* Blood Group */}
           <div className="mb-4">
