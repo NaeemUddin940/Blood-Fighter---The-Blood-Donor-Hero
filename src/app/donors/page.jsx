@@ -3,32 +3,37 @@ import DonarStats from "@/components/DonorStates";
 import { useBFC } from "@/Context/BloodFighter";
 
 export default function Donors() {
-  const { bloodGroupList, user, handleFilter, filteredUsers, activeFilter, setActiveFilter} = useBFC();
+  const {
+    bloodGroupList,
+    user,
+    handleFilter,
+    filteredUsers,
+    activeFilter,
+    setActiveFilter,
+  } = useBFC();
 
   // Blood groups to display for the filter buttons.
   const bloodGroups = ["All", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
-
   return (
     <div className="min-h-screen flex flex-col items-center">
-      <div className="flex flex-wrap gap-2 mt-5">
-        {bloodGroups?.map((group) => (
-          <button
-            key={group}
-            onClick={() => {
-              setActiveFilter(group);
-              handleFilter(group);
-            }}
-            className={`px-3 py-2 ${
-              activeFilter === group ? "bg-red-400" : "bg-gray-300"
-            } cursor-pointer rounded-full text-sm transition-colors duration-200 text-black font-bold shadow`}>
-            {group}
-          </button>
-        ))}
-      </div>
-
       {/* Main content area */}
       <main className="w-full max-w-7xl px-4 pb-20">
+        <div className="grid grid-cols-4 md:flex md:justify-evenly gap-2 mt-5">
+          {bloodGroups?.map((group) => (
+            <button
+              key={group}
+              onClick={() => {
+                setActiveFilter(group);
+                handleFilter(group);
+              }}
+              className={`px-3 py-2 ${
+                activeFilter === group ? "bg-red-400" : "bg-gray-300"
+              } cursor-pointer rounded-full text-sm transition-colors duration-200 text-black font-bold shadow`}>
+              {group}
+            </button>
+          ))}
+        </div>
         <DonarStats />
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3  gap-4">
           {(activeFilter === "All" ? user : filteredUsers).map((person) => (
