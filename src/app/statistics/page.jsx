@@ -40,7 +40,7 @@ export default function StatisticsPage() {
   return (
     <div className="min-h-screen flex flex-col items-center">
       {/* Main content area */}
-      <main className="w-full max-w-2xl p-4 lg:p-8 lg:mt-0 pb-20">
+      <main className="w-full max-w-6xl p-4 lg:p-8 lg:mt-0 pb-20">
         <div className="flex flex-col items-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800">Statistics</h1>
           <p className="text-gray-500 mt-1 text-center">

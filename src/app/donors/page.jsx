@@ -18,7 +18,7 @@ export default function Donors() {
   return (
     <div className="min-h-screen flex flex-col items-center">
       {/* Main content area */}
-      <main className="w-full max-w-7xl px-4 pb-20">
+      <main className="w-full max-w-6xl px-4 pb-20">
         <div className="grid grid-cols-4 md:flex md:justify-evenly gap-2 mt-5">
           {bloodGroups?.map((group) => (
             <button
