@@ -158,28 +158,6 @@ const Register = () => {
               className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
             />
           </div>
-          {/* Last Donation Date */}
-          <div className="mb-6">
-            <label
-              htmlFor="CurrDonationDate"
-              className="block text-sm font-semibold text-gray-700 mb-1">
-              First Donation Date (If not donate then leave it.)
-            </label>
-            <div className="relative">
-              <input
-                type="date"
-                id="CurrDonationDate"
-                name="CurrDonationDate"
-                onChange={handleInputChange}
-                placeholder="mm/dd/yyyy"
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
-              />
-            </div>
-            <p className="text-sm text-gray-500 mt-1">
-              Leave empty if not donate.
-            </p>
-          </div>
-
           {/* Blood Group */}
           <div className="mb-4">
             <label className="block text-sm font-semibold text-gray-700 mb-2">

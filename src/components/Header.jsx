@@ -26,6 +26,7 @@ export default function Header() {
         <div className="hidden lg:flex lg:gap-8">
           <Link href="/">Home</Link>
           <Link href="/donors">Donors</Link>
+          <Link href="/profile">Profile</Link>
           <Link href="/register">Register Donor</Link>
           <Link href="/statistics">Statistics</Link>
         </div>

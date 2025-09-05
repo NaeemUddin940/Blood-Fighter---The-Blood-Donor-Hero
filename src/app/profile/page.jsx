@@ -9,10 +9,10 @@ export default function Profile() {
       <div className="text-center mb-8">
         <Image
           id="profile-picture"
-          className=" md:w-40 md:h-40 rounded-full object-cover border-4 border-red-200 shadow-lg"
+          className=" md:w-60 md:h-40 rounded-full object-cover border-4 border-red-200 shadow-lg"
           src="/BloodFighter.png"
           alt="Donor Profile Picture"
-          width={100}
+          width={200}
           height={100}
         />
         <h2
@@ -23,8 +23,8 @@ export default function Profile() {
       </div>
 
       {/* <!-- Profile Details Grid --> */}
-      <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        <div className="p-6 rounded-xl bg-red-50">
+      <div className="max-w-6xl w-full mb-15 md:mb-5 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="p-6 rounded-xl bg-blue-50">
           <label
             htmlFor="name"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -35,11 +35,11 @@ export default function Profile() {
             id="name"
             name="name"
             placeholder="Enter full name"
-            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
           />
         </div>
         {/* Age */}
-        <div className="p-6 rounded-xl bg-red-50">
+        <div className="p-6 rounded-xl bg-blue-50">
           <label
             htmlFor="age"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -50,11 +50,11 @@ export default function Profile() {
             id="age"
             name="age"
             placeholder="Enter age"
-            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
           />
         </div>
         {/* <!-- Blood Type --> */}
-        <div className="p-6 rounded-xl bg-red-50">
+        <div className="p-6 rounded-xl bg-blue-50">
           <label
             htmlFor="age"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -65,11 +65,11 @@ export default function Profile() {
             id="age"
             name="age"
             placeholder="Enter Blood Group"
-            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
           />
         </div>
         {/* Village/City */}
-        <div className="p-6 rounded-xl bg-red-50">
+        <div className="p-6 rounded-xl bg-blue-50">
           <label
             htmlFor="village"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -80,12 +80,12 @@ export default function Profile() {
             id="village"
             name="village"
             placeholder="Enter village or city"
-            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
           />
         </div>
 
         {/* Phone Number */}
-        <div className="p-6 rounded-xl bg-red-50">
+        <div className="p-6 rounded-xl bg-blue-50">
           <label
             htmlFor="phoneNumber"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -96,11 +96,11 @@ export default function Profile() {
             id="phoneNumber"
             name="phoneNumber"
             placeholder="Enter phone number"
-            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
           />
         </div>
         {/* First Donation Date */}
-        <div className="mb-6 bg-red-50 p-6 rounded-xl">
+        <div className=" bg-blue-50 p-6 rounded-xl">
           <label
             htmlFor="CurrDonationDate"
             className="block text-sm font-semibold text-gray-700 mb-1">
@@ -112,7 +112,7 @@ export default function Profile() {
               id="CurrDonationDate"
               name="CurrDonationDate"
               placeholder="mm/dd/yyyy"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-blue-500 transition-colors duration-200"
             />
           </div>
           <p className="text-sm text-gray-500 mt-1">

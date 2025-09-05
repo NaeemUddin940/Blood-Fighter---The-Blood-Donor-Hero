@@ -60,7 +60,7 @@ export default function StatisticsPage() {
           <div className="bg-white rounded-2xl p-4 shadow-lg flex flex-col items-center text-center">
             <i className="fas fa-check-circle text-5xl text-green-500 mb-2"></i>
             <span className="text-3xl font-bold text-gray-800">
-              {stats.eligibleNow}
+              {user.eligibleNow || 0}
             </span>
             <p className="text-sm text-gray-500">Eligible Now</p>
           </div>
