@@ -3,26 +3,26 @@ import mongoose from "mongoose";
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: [true, "Name is required"],
     trim: true,
   },
   age: {
     type: Number,
-    required: true,
-    min: 18,
-    max: 65,
+    required: [true, "Age is required"],
+    min: [18, "Minimum age must be 18"],
+    max: [65, "Maximum age must be 65"],
   },
   village: {
     type: String,
-    required: true,
+    required: [true, "Village is required"],
   },
-  phone: {
+  phoneNumber: {
     type: String,
-    required: true,
+    required: [true, "Phone Number is required"],
   },
   bloodGroup: {
     type: String,
-    required: true,
+    required: [true, "Blood Group is required"],
   },
 });
 

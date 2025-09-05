@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import React from "react";
 
 export default function Profile() {
+
   return (
     <main className="p-6 md:p-10 flex flex-col items-center">
       {/* <!-- Profile Picture and Name --> */}

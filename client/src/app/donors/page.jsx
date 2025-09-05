@@ -1,6 +1,7 @@
 "use client";
 import DonarStats from "@/components/DonorStates";
 import { useBFC } from "@/Context/BloodFighter";
+import Link from "next/link";
 
 export default function Donors() {
   const {
@@ -16,7 +17,7 @@ export default function Donors() {
   const bloodGroups = ["All", "A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
+    <div className="min-h-screen bg-background flex flex-col items-center">
       {/* Main content area */}
       <main className="w-full max-w-6xl px-4 pb-20">
         <div className="grid grid-cols-4 md:flex md:justify-evenly gap-2 mt-5">
@@ -28,8 +29,10 @@ export default function Donors() {
                 handleFilter(group);
               }}
               className={`px-3 py-2 ${
-                activeFilter === group ? "bg-red-400" : "bg-gray-300"
-              } cursor-pointer rounded-full text-sm transition-colors duration-200 text-black font-bold shadow`}>
+                activeFilter === group
+                  ? "bg-red-400 text-background"
+                  : "bg-background hover:bg-hover  text-primary"
+              } cursor-pointer rounded-full text-sm transition-colors duration-200 font-bold shadow`}>
               {group}
             </button>
           ))}
@@ -37,8 +40,9 @@ export default function Donors() {
         <DonarStats />
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3  gap-4">
           {(activeFilter === "All" ? user : filteredUsers).map((person) => (
-            <div
+            <Link
               key={person._id}
+              href={`/donors/profile/${person._id}`}
               className="bg-green-100 border border-green-300 rounded-2xl p-6 shadow-lg relative flex justify-between items-start">
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-gray-800">
@@ -90,7 +94,7 @@ export default function Donors() {
                   Donations
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </main>

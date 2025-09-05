@@ -31,7 +31,7 @@ export function BloodFighterContextProvider({ children }) {
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const [activeFilter, setActiveFilter] = useState("All");
 

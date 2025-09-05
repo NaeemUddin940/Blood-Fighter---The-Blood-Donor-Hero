@@ -1,7 +1,6 @@
 "use client";
 
-import { db } from "@/Firebase/Firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 // The main component for the Register Donor page.
@@ -9,6 +8,7 @@ const Register = () => {
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   const [activeBloodGroup, setActiveBloodGroup] = useState("");
   const [submissionStatus, setSubmissionStatus] = useState("");
+  const route = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -31,15 +31,25 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await addDoc(collection(db, "user"), {
-        name: formData.name,
-        age: formData.age,
-        village: formData.village,
-        phoneNumber: formData.phoneNumber,
-        bloodGroup: formData.bloodGroup,
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Donor Registered:", data.message);
+        setSubmissionStatus("Registration Successfull!");
+        route.push("/donors");
+      } else {
+        setSubmissionStatus(data.error);
+      }
     } catch (error) {
-      console.error("Error Adding Document: ", error);
+      console.error("Error registering donor:", error);
+      setSubmissionStatus(error);
     }
 
     const requireFields = [
@@ -57,10 +67,6 @@ const Register = () => {
         return;
       }
     }
-    setSubmissionStatus("Your Registration Successfull as a Blood Donor.");
-    setTimeout(() => {
-      setSubmissionStatus("");
-    }, 2000);
 
     setFormData({
       name: "",
@@ -71,27 +77,26 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center">
+    <div className="min-h-screen bg-background flex flex-col items-center">
       {/* Main content area */}
       <main className="w-full max-w-2xl p-4 lg:p-8 lg:mt-0 pb-20 lg:pb-8">
         <div className="flex flex-col items-center mb-6">
           <div className="w-20 h-20 rounded-full bg-red-600 text-white flex items-center justify-center text-4xl mb-2 shadow-lg">
             <i className="fas fa-user-plus"></i>
           </div>
-          <h1 className="text-2xl font-bold text-gray-800">Register Donor</h1>
-          <p className="text-gray-500 mt-1 text-center">
+          <h1 className="text-2xl font-bold text-primary">Register Donor</h1>
+          <p className="text-secondary mt-1 text-center">
             Add a new blood donor to the system
           </p>
         </div>
 
         <form
+          method="POST"
           onSubmit={submitTheForm}
-          className="bg-white rounded-2xl p-6 shadow-lg mb-6">
+          className="bg-background shadow rounded-2xl p-6 mb-6">
           {/* Full Name */}
           <div className="mb-4">
-            <label
-              htmlFor="name"
-              className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="name" className="labelStyle">
               Full Name <span className="text-red-500">*</span>
             </label>
             <input
@@ -101,15 +106,13 @@ const Register = () => {
               value={formData.name}
               onChange={handleInputChange}
               placeholder="Enter full name"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              className="inputStyle"
             />
           </div>
 
           {/* Age */}
           <div className="mb-4">
-            <label
-              htmlFor="age"
-              className="block text-sm font-semibold text-gray-700 mb-1">
+            <label htmlFor="age" className="labelStyle">
               Age <span className="text-red-500">*</span>
             </label>
             <input
@@ -119,8 +122,9 @@ const Register = () => {
               value={formData.age}
               onChange={handleInputChange}
               placeholder="Enter age"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              className="inputStyle"
             />
+            <span className="text-gray-600">Age Must be 18 to 65</span>
           </div>
 
           {/* Village/City */}
@@ -137,7 +141,7 @@ const Register = () => {
               value={formData.village}
               onChange={handleInputChange}
               placeholder="Enter village or city"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              className="inputStyle"
             />
           </div>
 
@@ -155,7 +159,7 @@ const Register = () => {
               value={formData.phoneNumber}
               onChange={handleInputChange}
               placeholder="Enter phone number"
-              className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+              className="inputStyle"
             />
           </div>
           {/* Blood Group */}
@@ -188,7 +192,7 @@ const Register = () => {
           <button
             type="submit"
             onClick={submitTheForm}
-            className="w-full cursor-pointer bg-red-600 text-white font-semibold py-4 rounded-full shadow-lg hover:bg-red-700 transition-colors duration-200">
+            className="w-full cursor-pointer bg-red-400 text-background font-semibold py-4 rounded-full shadow-lg hover:bg-red-300 transition-colors duration-200">
             Register As a Donor
           </button>
           {/* Submission status message */}
@@ -204,7 +208,7 @@ const Register = () => {
         </form>
 
         {/* Donation Guidelines Section */}
-        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
+        <div className="bg-blue-100 border border-blue-200 rounded-xl p-4">
           <div className="flex items-start space-x-3">
             <div className="w-5 h-5 flex items-center justify-center text-blue-600 mt-0.5">
               <i className="ri-information-line"></i>

@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Header() {
   const { active, setActive } = useBFC();
   return (
-    <header className="bg-gray-100 shadow-lg flex justify-center px-4">
+    <header className="bg-background shadow flex justify-center px-4">
       <div className="w-6xl flex justify-between items-center">
         <div className="flex items-center space-x-2">
           <Link
@@ -23,7 +23,7 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="hidden lg:flex lg:gap-8">
+        <div className="hidden lg:flex lg:gap-8 text-primary">
           <Link href="/">Home</Link>
           <Link href="/donors">Donors</Link>
           <Link href="/profile">Profile</Link>
@@ -34,7 +34,7 @@ export default function Header() {
           <input
             type="search"
             placeholder="Search by name or village..."
-            className="w-full lg:w-100 pl-10 pr-4 py-2 rounded-full border-2 cursor-text bg-gray-200 shadow-sm border-gray-200 focus:outline-none focus:border-red-500 transition-colors duration-200"
+            className="w-full lg:w-100 pl-10 pr-4 py-2 rounded-full border-2 cursor-text bg-background shadow-sm border-gray-200 focus:outline-none placeholder:text-secondary focus:border-red-500 transition-colors duration-200"
           />
           <i className="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"></i>
         </div>
