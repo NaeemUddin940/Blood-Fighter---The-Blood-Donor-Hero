@@ -1,6 +1,4 @@
 "use client";
-import { db } from "@/Firebase/Firebase";
-import { collection, getDocs } from "firebase/firestore";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const BloodFighterContext = createContext();
@@ -23,20 +21,19 @@ export function BloodFighterContextProvider({ children }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const collectionRefference = collection(db, "user");
-
-      const snapshot = await getDocs(collectionRefference);
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setUser(data);
+      try {
+        const res = await fetch("http://localhost:5000");
+        const data = await res.json();
+        setUser(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
 
     fetchData();
   }, []);
 
-      const [activeFilter, setActiveFilter] = useState("All");
+  const [activeFilter, setActiveFilter] = useState("All");
 
   function handleFilter(group) {
     setFilteredUsers(user.filter((u) => group === u.bloodGroup));
@@ -50,7 +47,7 @@ export function BloodFighterContextProvider({ children }) {
     handleFilter,
     filteredUsers,
     activeFilter,
-    setActiveFilter
+    setActiveFilter,
   };
   return (
     <BloodFighterContext.Provider value={state}>
