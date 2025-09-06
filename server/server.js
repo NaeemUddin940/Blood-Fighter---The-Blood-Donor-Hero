@@ -34,7 +34,6 @@ app.post("/register", async (req, res) => {
     });
     res.status(201).json(newUser);
   } catch (error) {
-
     // ✅ Validation Error (Mongoose Schema rules)
     if (error.name === "ValidationError") {
       const messages = Object.values(error.errors).map((err) => err.message);
@@ -50,6 +49,30 @@ app.post("/register", async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 });
+import { ObjectId } from "mongodb";
+
+app.get("/donors/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    if (!ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid donor ID" });
+    }
+
+    const donor = await userCollection.findOne({ _id: new ObjectId(id) });
+
+    if (!donor) {
+      return res.status(404).json({ error: "Donor not found" });
+    }
+
+    console.log("Fetched donor:", donor);
+    res.status(200).json(donor);
+  } catch (error) {
+    console.error("Error fetching donor:", error.message);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 
 // Server is Running
 app.listen(port, () => {

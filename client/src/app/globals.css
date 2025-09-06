@@ -51,5 +51,5 @@ body {
   @apply block text-sm font-semibold text-secondary mb-1;
 }
 .inputStyle {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder:text-secondary;
+  @apply w-full px-4 py-2 border border-gray-300 text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent placeholder:text-secondary;
 }

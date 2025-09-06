@@ -41,8 +41,8 @@ export default function Donors() {
         <div className="grid grid-cols-1 mt-5 md:grid-cols-2 lg:grid-cols-3  gap-4">
           {(activeFilter === "All" ? user : filteredUsers).map((person) => (
             <Link
+              href={`/donors/${person._id}`}
               key={person._id}
-              href={`/donors/profile/${person._id}`}
               className="bg-green-100 border border-green-300 rounded-2xl p-6 shadow-lg relative flex justify-between items-start">
               <div className="flex-grow">
                 <h3 className="text-2xl font-bold text-gray-800">
@@ -65,14 +65,24 @@ export default function Donors() {
                   <>
                     <span
                       className={`${
-                        person.isEligible ? "text-green-600" : "text-red-600"
+                        person.isEligible === true
+                          ? "text-green-600"
+                          : person.isEligible === false
+                          ? "text-red-600"
+                          : "text-blue-500"
                       }`}>
-                      {person.isEligible ? "Eligible" : "Not-Eligible"}
+                      {person.isEligible === true
+                        ? "Eligible"
+                        : person.isEligible === false
+                        ? "Not-Eligible"
+                        : "Unknown"}
                     </span>
-                    <span className="px-5 text0xl font-bold text-gray-700">
+                    <span className="px-5 text-sm font-bold text-gray-700">
                       {person.phoneNumber}
                     </span>
-                    <a href={`tel:+88${person.phoneNumber}`}>📞 Call Me</a>
+                    <a href={`tel:+88${person.phoneNumber}`}>
+                      📞 Call Me
+                    </a>
                   </>
                 </p>
               </div>

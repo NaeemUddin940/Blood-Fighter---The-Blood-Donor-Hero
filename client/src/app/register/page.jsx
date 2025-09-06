@@ -1,22 +1,15 @@
 "use client";
 
+import { useBFC } from "@/Context/BloodFighter";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 // The main component for the Register Donor page.
 const Register = () => {
+  const {setFormData, formData} = useBFC()
   const bloodGroups = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
   const [activeBloodGroup, setActiveBloodGroup] = useState("");
-  const [submissionStatus, setSubmissionStatus] = useState("");
-  const route = useRouter();
-
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    village: "",
-    phoneNumber: "",
-    bloodGroup: "",
-  });
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,54 +20,7 @@ const Register = () => {
     setFormData({ ...formData, bloodGroup: group });
   };
 
-  const submitTheForm = async (e) => {
-    e.preventDefault();
 
-    try {
-      const response = await fetch("http://localhost:5000/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        console.log("Donor Registered:", data.message);
-        setSubmissionStatus("Registration Successfull!");
-        route.push("/donors");
-      } else {
-        setSubmissionStatus(data.error);
-      }
-    } catch (error) {
-      console.error("Error registering donor:", error);
-      setSubmissionStatus(error);
-    }
-
-    const requireFields = [
-      "name",
-      "age",
-      "village",
-      "phoneNumber",
-      "bloodGroup",
-    ];
-    setActiveBloodGroup("");
-
-    for (const field of requireFields) {
-      if (!formData[field]) {
-        setSubmissionStatus("Please fill in all required fields.");
-        return;
-      }
-    }
-
-    setFormData({
-      name: "",
-      age: "",
-      village: "",
-      phoneNumber: "",
-    });
-  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col items-center">
