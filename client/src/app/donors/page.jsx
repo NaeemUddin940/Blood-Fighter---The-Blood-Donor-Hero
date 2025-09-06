@@ -55,11 +55,11 @@ export default function Donors() {
                 </p>
                 <p className="text-gray-600 text-sm">
                   <span className="font-semibold">Donation Date: </span>
-                  {person.CurrentDonation?.toDate().toLocaleDateString()}
+                  {/* {person.currentDonationDate?.toDate().toLocaleDateString()} */}ds
                 </p>
                 <p className="text-gray-600 text-sm">
                   <span className="font-semibold">Next Donation: </span>
-                  {person.NextDonation?.toDate().toLocaleDateString()}
+                  {/* {person.NextDonation?.toDate().toLocaleDateString()} */}sd
                 </p>
                 <p className="text-sm font-semibold mt-2">
                   <>
@@ -80,9 +80,7 @@ export default function Donors() {
                     <span className="px-5 text-sm font-bold text-gray-700">
                       {person.phoneNumber}
                     </span>
-                    <a href={`tel:+88${person.phoneNumber}`}>
-                      📞 Call Me
-                    </a>
+                    
                   </>
                 </p>
               </div>

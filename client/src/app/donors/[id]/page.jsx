@@ -102,16 +102,19 @@ export default function Profile() {
           <label
             htmlFor="phoneNumber"
             className="block text-sm font-semibold text-gray-700 mb-1">
-            Phone Number <span className="text-red-500">*</span>
+            Phone Number <span className="text-red-500">*</span>{" "}
           </label>
-          <input
-            type="tel"
-            id="phoneNumber"
-            name="phoneNumber"
-            value={singleUser.phoneNumber}
-            placeholder="Enter phone number"
-            className="inputStyle bg-gray-600 border-none"
-          />
+          <div className="flex gap-3 justify-center items-center">
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={singleUser.phoneNumber}
+              placeholder="Enter phone number"
+              className="inputStyle bg-gray-600 border-none"
+            />
+            <a className="bg-gray-600 w-40 py-2 rounded-2xl px-2 text-primary" href={`tel:+88${singleUser.phoneNumber}`}>📞 Call Me</a>
+          </div>
         </div>
 
         {/* Donation Times */}
